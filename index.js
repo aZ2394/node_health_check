@@ -25,10 +25,7 @@ app.get('/', async (req, res)=> {
         const rpc = await web3.eth.getBlockNumber();
         const ws = await web3S.eth.getBlockNumber();
         const iov = await web3Iov.eth.getBlockNumber();
-        const account = await web3.eth.accounts.create();  
-        const rpcQuery1 = await web3.eth.getBalance((account.address).toString(),'latest');
-        const rpcQuery2 = await web3.eth.getCode((account.address).toString(), "latest");
-        const syncResult = new Date(Date.now())+ " processed blocks: rpc "+rpc+", wss: "+ws+"  iov: "+iov+" getBalance:"+rpcQuery1+" getCode:"+rpcQuery2+"\n";
+        const syncResult = new Date(Date.now())+ " processed blocks: rpc "+rpc+", wss: "+ws+"  iov: "+iov+ "\n";
         if(Math.abs(rpc - ws) <= 3 && Math.abs(iov - rpc) <=3 ) {
             return res.status(200).send(syncResult);
           } 
