@@ -61,7 +61,6 @@ app.get('/', async (req, res)=> {
         const ws = await web3S.eth.getBlockNumber();
         const iov = await web3Iov.eth.getBlockNumber();
         const syncResult = new Date(Date.now())+ " processed blocks: rpc "+rpc+", wss: "+ws+" iov: "+iov+ "\n";
-        console.log(syncResult);
         await web3.currentProvider.disconnect();
         await web3S.currentProvider.disconnect();
         await web3Iov.currentProvider.disconnect();
@@ -76,7 +75,6 @@ app.get('/', async (req, res)=> {
         } 
      }  
      catch(err){
-       console.log(err);
           await web3.currentProvider.disconnect();
           await web3S.currentProvider.disconnect();
           await web3Iov.currentProvider.disconnect();
