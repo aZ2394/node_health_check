@@ -1,0 +1,13 @@
+[Unit]
+Description=bsc node health service for aws load balancer checks if node is synced
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=ubuntu
+ExecStart=/usr/bin/node /home/ubuntu/node_health_check/index.js
+
+[Install]
+WantedBy=multi-user.target
