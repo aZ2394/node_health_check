@@ -16,7 +16,7 @@ setTimeout(startListening, 20000);
 function startListening(){
    web3 = new Web3("http://127.0.0.1:4444");
    web3S = new Web3("ws://127.0.0.1:4445/websocket");
-   web3Iov = new Web3('https://public-node.rsk.co');
+   web3Iov = new Web3('https://public-node.testnet.rsk.co');
 
    http.listen(serverPort, () => {
        console.log('listening on *:'+serverPort);
@@ -30,7 +30,7 @@ app.get('/', async (req, res)=> {
     const result = new Date(Date.now())+ " processed blocks: rpc "+b+", wss: "+s+"  iov: "+i;
     console.log(result);
 
-    if(Math.abs(b - s) <= 3 && Math.abs(b-i)<=3) return res.status(200).send(result);
+    if(Math.abs(b - s) <= 10 && Math.abs(b-i)<=10) return res.status(200).send(result);
 
     return res.status(503).send("not in sync - " + result);
 });
